@@ -71,6 +71,15 @@
 #    }
 #  }
 #
+
+# Editor: Andreas Nitsche
+# Additionally added variables:
+# - notify_source
+# - notify_source_v6
+# - allow_notify
+# - auth_nxdomain
+# - empty_zones_enable
+
 define bind::server::conf (
   $acls               = {},
   $masters            = {},
@@ -78,6 +87,8 @@ define bind::server::conf (
   $listen_on_addr     = [ '127.0.0.1' ],
   $listen_on_v6_port  = '53',
   $listen_on_v6_addr  = [ '::1' ],
+  $notify_source      = '',
+  $notify_source_v6   = '',
   $forwarders         = [],
   $directory          = '/var/named',
   $version            = undef,
@@ -89,10 +100,15 @@ define bind::server::conf (
   $recursion          = 'yes',
   $allow_recursion    = [],
   $allow_transfer     = [],
+  $allow_notify       = [],
+  $also_notify        = [],
+  $allow_update_forwarding = [],
   $check_names        = [],
+  $auth_nxdomain      = 'no',
   $dnssec_enable      = 'yes',
   $dnssec_validation  = 'yes',
   $dnssec_lookaside   = 'auto',
+  $empty_zones_enable = 'no',
   $zones              = {},
   $includes           = [],
   $views              = {},
